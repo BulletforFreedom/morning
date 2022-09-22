@@ -6,7 +6,6 @@ import requests
 import os
 import random
 import chinese_calendar
-import pandas as pd
 from bs4 import BeautifulSoup as BS
 
 nowtime = datetime.utcnow() + timedelta(hours=8)  # 东八区时间
@@ -84,7 +83,7 @@ def get_holidays(year, month):
 
 
 # 获取法定节假日倒计时
-def holidays_left():
+def get_holidays_left():
     for year in range(today.year, today.year + 2):
         if year == today.year:
             start_month = today.month
@@ -122,10 +121,7 @@ def get_week_day():
 
 # 纪念日正数
 def get_memorial_days_count():
-    if start_date is None:
-        print('没有设置 START_DATE')
-        return 0
-    delta = today - datetime.strptime(start_date, "%Y-%m-%d")
+    delta = today - datetime.strptime('2014-05-12', "%Y-%m-%d")
     return delta.days
 
 
@@ -165,6 +161,7 @@ except WeChatClientException as e:
 
 wm = WeChatMessage(client)
 weather = get_weather()
+holiday, days_left = get_holidays_left().popitem()
 if weather is None:
     print('获取天气失败')
     exit(422)
@@ -211,6 +208,18 @@ data = {
     },
     "lowest": {
         "value": math.floor(weather['low']),
+        "color": get_random_color()
+    },
+    "rest_left": {
+        "value": get_rest_left(),
+        "color": get_random_color()
+    },
+    "holiday_name": {
+        "value": days_left,
+        "color": get_random_color()
+    },
+    "holiday_left": {
+        "value": days_left,
         "color": get_random_color()
     },
     "love_days": {
