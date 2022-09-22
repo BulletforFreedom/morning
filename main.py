@@ -94,6 +94,7 @@ def get_holidays_left():
             start_month = 1
         for month in range(start_month, 13):
             holiday_, date_ = get_holidays(year, month)
+            print(holiday)
             if date_:
                 date_ = datetime.strptime(date_, "%Y-%m-%d")
                 return {holiday_: (date_ - today).days}
