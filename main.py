@@ -54,6 +54,9 @@ def get_rest_left():
 
 # 获取指定月份节假日
 def get_holidays(year, month):
+    print(year)
+    print(month)
+    print(111111111111)
     holidays_name = ['春节', '元旦', '除夕', '元宵节', '清明节', '劳动节', '端午节', '中秋节', '国庆节']
     url = f"https://www.rili.com.cn/wannianli/{year}/{month}/"
     content = requests.get(url)
