@@ -215,7 +215,7 @@ data = {
         "color": get_random_color()
     },
     "holiday_name": {
-        "value": days_left,
+        "value": holiday,
         "color": get_random_color()
     },
     "holiday_left": {
