@@ -60,7 +60,7 @@ def get_holidays(year, month):
     holidays_name = ['春节', '元旦', '除夕', '元宵节', '清明节', '劳动节', '端午节', '中秋节', '国庆节']
     url = f"https://www.rili.com.cn/wannianli/{year}/{month}/"
     content = requests.get(url)
-    bs = BS(content.text, "lxml")
+    bs = BS(content.text, "html.parser")
 
     tds = bs.find("table").find("table").find_all("td")
 
