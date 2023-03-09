@@ -109,6 +109,8 @@ def get_weather():
     res = requests.get(url).json()
     if res is None:
         return None
+    print(res)
+    print(res.keys())
     weather = res['data']['list'][0]
     return weather
 
